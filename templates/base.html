@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pet Application</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <header>
+        <h1>Welcome to the Pet Application</h1>
+        <nav>
+            <ul>
+                <li><a href="{{ url_for('home') }}">Home</a></li>
+                <li><a href="{{ url_for('add_pet') }}">Add Pet</a></li>
+                <li><a href="{{ url_for('pets_list') }}">View Pets</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}
+        <!-- Content will be inserted here from child templates -->
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Pet Adoption Agency</p>
+    </footer>
+</body>
+</html>
