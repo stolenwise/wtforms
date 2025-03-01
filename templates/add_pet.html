@@ -2,7 +2,7 @@
 
 {% block content %}
   <h1>Add a New Pet</h1>
-  <form method="POST" action="{{ url_for('add_pet') }}">
+  <form id = "form" method="POST" action="{{ url_for('add_pet') }}">
     {{ form.hidden_tag() }}
     <div>
       <label for="pet_name">Pet Name</label>
