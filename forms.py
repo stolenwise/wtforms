@@ -1,10 +1,30 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, IntegerField, TextAreaField, URLField
-from wtforms.validators import InputRequired, URL
+from wtforms import StringField, IntegerField, TextAreaField, URLField, SelectField, BooleanField, SubmitField
+from wtforms.validators import InputRequired, URL, Optional, Length, DataRequired
 
 class AddPetForm(FlaskForm):
-    pet_name = StringField('Pet Name', validators=[InputRequired()])
-    species = StringField('Species', validators=[InputRequired()])
-    photo_url = URLField('Photo URL', validators=[InputRequired(), URL()])
-    age = IntegerField('Age', validators=[InputRequired()])
+    name = StringField('Pet Name', validators=[DataRequired()]) 
+    species = StringField('Species', validators=[DataRequired()])
+    photo_url = StringField('Photo URL')
+    age = IntegerField('Age')
     notes = TextAreaField('Notes')
+    available = BooleanField('Available', default=True)
+    submit = SubmitField('Save')
+
+
+class EditPetForm(FlaskForm):
+    """Form for editing an existing pet."""
+
+    name = StringField('Pet Name', validators=[DataRequired()]) 
+
+    photo_url = StringField(
+        "Photo URL",
+        validators=[Optional(), URL()],
+    )
+
+    notes = TextAreaField(
+        "Comments",
+        validators=[Optional(), Length(min=10)],
+    )
+
+    available = BooleanField("Available?")
