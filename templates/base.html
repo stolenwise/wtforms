@@ -11,11 +11,11 @@
     <header>
         <h1>Welcome to the Pet Application</h1>
         <nav>
-            <ul>
-                <li><a href="{{ url_for('home') }}">Home</a></li>
-                <li><a href="{{ url_for('add_pet') }}">Add Pet</a></li>
-                <li><a href="{{ url_for('pets_list') }}">View Pets</a></li>
-            </ul>
+            <div class="nav-button-group">
+                <a href="{{ url_for('home') }}" class="nav-btn">Home</a>
+                <a href="{{ url_for('add_pet') }}" class="nav-btn">Add Pet</a>
+                <a href="{{ url_for('pets_list') }}" class="nav-btn">View Pets</a>
+              </div>              
         </nav>
     </header>
 

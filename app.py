@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, url_for
 from db import db  # Import db from the db.py file
 from flask_wtf.csrf import generate_csrf
-from forms import AddPetForm
+from forms import AddPetForm, EditPetForm
 from models import Pet
 
 app = Flask(__name__)
@@ -47,6 +47,24 @@ def add_pet():
         return redirect(url_for('home'))
 
     return render_template('add_pet.html', form=form)
+
+
+@app.route('/pets/<int:pet_id>', methods=['GET', 'POST'])
+def edit_pet(pet_id):
+    pet = Pet.query.get_or_404(pet_id)
+    form = EditPetForm(obj=pet) #pre fill with the pet data
+
+    if form.validate_on_submit():
+        pet.photo_url = form.photo_url.data
+        pet.notes = form.notes.data
+        pet.available = form.available.data
+
+ 
+        db.session.commit()
+        return redirect(url_for('pets_list'))
+    
+    return render_template('edit_pet.html', pet=pet, form=form)
+
 
 @app.route('/pets/<int:pet_id>/delete', methods=['POST'])
 def delete_pet(pet_id):

@@ -2,31 +2,54 @@
 
 {% block content %}
   <h1>Add a New Pet</h1>
-  <form id = "form" method="POST" action="{{ url_for('add_pet') }}">
+
+  <form id="form" method="POST" action="{{ url_for('add_pet') }}">
     {{ form.hidden_tag() }}
+
     <div>
-      <label for="pet_name">Pet Name</label>
-      {{ form.pet_name }}
+      <label for="pet_name">Pet Name</label><br>
+      {{ form.pet_name(size=30) }}
+      {% for error in form.pet_name.errors %}
+        <div class="error">{{ error }}</div>
+      {% endfor %}
     </div>
+
     <div>
-      <label for="species">Species</label>
-      {{ form.species }}
+      <label for="species">Species</label><br>
+      {{ form.species(size=30) }}
+      {% for error in form.species.errors %}
+        <div class="error">{{ error }}</div>
+      {% endfor %}
     </div>
+
     <div>
-      <label for="photo_url">Photo URL</label>
-      {{ form.photo_url }}
+      <label for="photo_url">Photo URL</label><br>
+      {{ form.photo_url(size=40) }}
+      {% for error in form.photo_url.errors %}
+        <div class="error">{{ error }}</div>
+      {% endfor %}
     </div>
+
     <div>
-      <label for="age">Age</label>
-      {{ form.age }}
+      <label for="age">Age</label><br>
+      {{ form.age() }}
+      {% for error in form.age.errors %}
+        <div class="error">{{ error }}</div>
+      {% endfor %}
     </div>
+
     <div>
-      <label for="notes">Notes</label>
-      {{ form.notes }}
+      <label for="notes">Notes</label><br>
+      {{ form.notes(rows=4, cols=40) }}
+      {% for error in form.notes.errors %}
+        <div class="error">{{ error }}</div>
+      {% endfor %}
     </div>
+
     <div>
       <button type="submit">Add Pet</button>
     </div>
   </form>
-  <a href="{{ url_for('add_pet') }}">Add a Pet</a>
+
+  <p><a href="{{ url_for('pets_list') }}">Back to All Pets</a></p>
 {% endblock %}
