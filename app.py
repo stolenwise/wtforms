@@ -1,5 +1,6 @@
 from flask import Flask, render_template, redirect, url_for
 from db import db  # Import db from the db.py file
+from flask_wtf.csrf import generate_csrf
 from forms import AddPetForm
 from models import Pet
 
@@ -14,7 +15,7 @@ db.init_app(app)
 
 @app.route('/')
 def home():
-    return 'Home Page'
+    return redirect('/pets')
 
 @app.route('/pets')
 def pets_list():
@@ -34,15 +35,30 @@ def add_pet():
         
         # Create a new pet instance
         new_pet = Pet(pet_name=pet_name, species=species, photo_url=photo_url, age=age, notes=notes)
-        
-        # Add to session and commit
-        db.session.add(new_pet)
-        db.session.commit()
+
+        existing_pet = Pet.query.filter_by(pet_name=pet_name, species=species).first()
+        if existing_pet is None:
+
+            # Add to session and commit
+            db.session.add(new_pet)
+            db.session.commit()
         
         # Redirect to home or another page
         return redirect(url_for('home'))
 
     return render_template('add_pet.html', form=form)
+
+@app.route('/pets/<int:pet_id>/delete', methods=['POST'])
+def delete_pet(pet_id):
+    pet = Pet.query.get_or_404(pet_id)
+    db.session.delete(pet)
+    db.session.commit()
+    return redirect(url_for('pets_list'))
+
+@app.context_processor
+def csrf_token():
+    return dict(csrf_token=generate_csrf)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

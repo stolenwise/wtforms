@@ -1,57 +1,77 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f9;
-}
-
-h1 {
-    width: 50%;
-    margin: 20px auto;
+    font-family: 'Open Sans', sans-serif;
     padding: 20px;
-    text-align: center;
-    /* background-color: white; */
-    border-radius: 10px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-}
-
-form {
-    width: 50%;
-    margin: 20px auto;
-    padding: 20px;
-    /* background-color: white; */
-    border-radius: 10px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-}
-
-
-
-nav, ul {
+    background-color: #fdfdfd;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+  }
+  
+  .pets-container {
     display: flex;
-    justify-content: center;
-    gap: 20px; /* Add spacing between the links if needed */
-    list-style-type: none; /* If it's a list, remove bullet points */
-    padding: 0;
-}
-
-
-/* ul, li {
-    display: inline-block;
-    justify-content: right;
-    font-weight: bold;
-    margin-left: 20px;
-
-    /* background-color: white; */
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .pet-card {
+    border: 1px solid #eee;
     border-radius: 10px;
-    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-
-
-
-li {
+    padding: 10px;
+    width: 250px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
     text-align: center;
-}
-
-footer {
-    text-align: center;
-    margin-top: 50px;
-}
+    background: white;
+  }
+  
+  .pet-card img {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+    height: 200px;
+  }
+  
+  .pet-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #4CAF50;
+    margin-top: 10px;
+  }
+  
+  .pet-status {
+    font-weight: 600;
+    color: #555;
+  }
+  
+  .add-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #66bb6a;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    display: inline-block;
+  }
+  
+  .add-btn:hover {
+    background: #5aa65b;
+  }
+  
+  .delete-btn {
+    margin-top: 10px;
+    padding: 6px 12px;
+    background: #e57373;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  
+  .delete-btn:hover {
+    background: #a25a5a;
+  }
+  
